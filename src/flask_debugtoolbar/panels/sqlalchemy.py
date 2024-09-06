@@ -175,7 +175,7 @@ def sql_select(explain: bool = False) -> str:
             statement = f"EXPLAIN\n{statement}"
 
     with engine.connect() as connection:
-        result = connection.exec_driver_sql(statement, tuple(params[0]))
+        result = connection.exec_driver_sql(statement, params)
 
     return g.debug_toolbar.render(  # type: ignore[no-any-return]
         "panels/sqlalchemy_select.html",
